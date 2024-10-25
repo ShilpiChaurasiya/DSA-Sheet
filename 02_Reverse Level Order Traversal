@@ -1,0 +1,55 @@
+1. Brute Force
+
+class Tree
+{
+    public ArrayList<Integer> reverseLevelOrder(Node node) 
+    {
+        // code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Node> q = new LinkedList<>();
+        if(node != null)
+        q.offer(node);
+        
+        while(!q.isEmpty())
+        {
+            Node cur = q.poll();
+            ans.add(0,cur.data);
+            
+            if(cur.right != null)
+            q.offer(cur.right);
+            
+            if(cur.left != null)
+            q.offer(cur.left);
+        }
+        return ans;
+    }
+}      
+
+
+2. Optimized
+
+class Tree
+{
+    public ArrayList<Integer> reverseLevelOrder(Node node) 
+    {
+        // code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Node> q = new LinkedList<>();
+        if(node != null)
+        q.offer(node);
+        
+        while(!q.isEmpty())
+        {
+            Node cur = q.poll();
+            ans.add(cur.data);        // change
+            
+            if(cur.right != null)
+            q.offer(cur.right);
+            
+            if(cur.left != null)
+            q.offer(cur.left);
+        }
+         Collections.reverse(ans);  // change
+         return ans;
+    }
+}      
